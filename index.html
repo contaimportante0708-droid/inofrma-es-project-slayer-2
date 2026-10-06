@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slayers 2 Wiki | O Guia Definitivo</title>
+    <meta name="description" content="Enciclopédia completa e interativa para Project Slayers 2 no Roblox. Guias de Ouwland, clãs supremos, respirações, blood demon arts, armas Firstlight e códigos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #151b2b;
+            --bg-card-hover: #1e263d;
+            --border-color: #2a3450;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-red: #dc2626;
+            --accent-red-hover: #b91c1c;
+            --accent-purple: #7c3aed;
+            --accent-blue: #2563eb;
+            --badge-bg: #1f2937;
+            --transition: all 0.25s ease;
+        }
+
+        [data-theme="light"] {
+            --bg-main: #f3f4f6;
+            --bg-card: #ffffff;
+            --bg-card-hover: #e5e7eb;
+            --border-color: #d1d5db;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --accent-red: #ef4444;
+            --accent-red-hover: #dc2626;
+            --badge-bg: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+        }
+
+        [data-theme="light"] header {
+            background-color: rgba(243, 244, 246, 0.85);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            border-color: var(--accent-red);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-red);
+        }
+
+        /* Barra Lateral (Sidebar) */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2500;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            z-index: 2600;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            transition: transform 0.3s ease;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+        }
+
+        .sidebar.active {
+            transform: translateX(300px);
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sidebar-close:hover {
+            color: var(--accent-red);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 0.25rem;
+        }
+
+        .sidebar-links::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-links::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-links a:hover {
+            background: var(--bg-card-hover);
+            color: var(--accent-red);
+            transform: translateX(4px);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .search-trigger, .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .search-trigger:hover, .theme-toggle:hover {
+            border-color: var(--accent-red);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .breadcrumbs a:hover {
+            color: var(--accent-red);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(124, 58, 237, 0.15)), var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-red-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .card-quick {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .card-quick:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-red);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card-quick h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .filters-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-input {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .filter-input:focus {
+            border-color: var(--accent-red);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .data-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-red);
+        }
+
+        .data-card-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-card-body {
+            padding: 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            background: var(--badge-bg);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-s { background: rgba(220, 38, 38, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+        .badge-a { background: rgba(124, 58, 237, 0.2); color: #a78bfa; border: 1px solid #a78bfa; }
+        .badge-b { background: rgba(37, 99, 235, 0.2); color: #60a5fa; border: 1px solid #60a5fa; }
+        .badge-c { background: rgba(156, 163, 175, 0.2); color: #9ca3af; border: 1px solid #9ca3af; }
+
+        .codes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .code-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-info h4 {
+            font-size: 1.1rem;
+            font-family: monospace;
+            letter-spacing: 1px;
+            color: var(--accent-red);
+            margin-bottom: 0.25rem;
+        }
+
+        .code-info p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 10vh;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-search-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .modal-results {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .search-result-item {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .search-result-item:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h5 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-red);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media(max-width: 768px) {
+            .hero { padding: 2rem 1rem; }
+            .hero-content h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="menu-toggle" onclick="toggleSidebar()" title="Abrir Menu">☰</button>
+            <div class="logo" onclick="navigateTo('home')">
+                Slayers <span>2</span> Wiki
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="search-trigger" onclick="openSearchModal()">
+                <span>🔍 Pesquisar...</span>
+            </button>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Alternar Tema">🌓</button>
+        </div>
+    </header>
+
+    <!-- Barra Lateral (Sidebar) com Sistema de 3 Traços -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo" onclick="navigateTo('home'); toggleSidebar();" style="font-size: 1.25rem;">
+                Slayers <span>2</span>
+            </div>
+            <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+        </div>
+        <ul class="sidebar-links">
+            <li><a onclick="navigateTo('home'); toggleSidebar();">🏠 Início</a></li>
+            <li><a onclick="navigateTo('systems'); toggleSidebar();">⚙️ Sistema do Jogo</a></li>
+            <li><a onclick="navigateTo('items'); toggleSidebar();">🎒 Itens Essenciais</a></li>
+            <li><a onclick="navigateTo('clans'); toggleSidebar();">👥 Clãs (Tier List)</a></li>
+            <li><a onclick="navigateTo('breathing'); toggleSidebar();">🌊 Respirações</a></li>
+            <li><a onclick="navigateTo('bda'); toggleSidebar();">🩸 Blood Demon Arts</a></li>
+            <li><a onclick="navigateTo('weapons'); toggleSidebar();">⚔️ Armas</a></li>
+            <li><a onclick="navigateTo('bosses'); toggleSidebar();">👹 Bosses & Drops</a></li>
+            <li><a onclick="navigateTo('quests'); toggleSidebar();">📜 Quests & Progressão</a></li>
+            <li><a onclick="navigateTo('locations'); toggleSidebar();">🗺️ Mapa Ouwland</a></li>
+            <li><a onclick="navigateTo('races'); toggleSidebar();">👤 Raças</a></li>
+            <li><a onclick="navigateTo('codes'); toggleSidebar();">🎁 Códigos Ativos</a></li>
+            <li><a onclick="navigateTo('favorites'); toggleSidebar();">⭐ Meus Favoritos</a></li>
+        </ul>
+    </aside>
+
+    <main id="app-container">
+        <!-- Conteúdo injetado via JS -->
+    </main>
+
+    <div class="modal-overlay" id="search-modal" onclick="closeSearchModalOnOutside(event)">
+        <div class="modal-container">
+            <input type="text" class="modal-search-input" id="global-search-input" placeholder="Pesquisar clãs, boss, armas, sistema, itens..." oninput="handleGlobalSearch(this.value)">
+            <div class="modal-results" id="modal-search-results">
+                <div style="padding: 1rem; color: var(--text-secondary); text-align: center;">Comece a digitar para pesquisar em toda a wiki...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast-notification">Ação realizada com sucesso!</div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h5>Slayers 2 Wiki</h5>
+                <p style="color: var(--text-secondary); font-size: 0.875rem;">O guia definitivo e atualizado para o Roblox Slayers 2 (Ouwland).</p>
+            </div>
+            <div class="footer-col">
+                <h5>Sistemas Principais</h5>
+                <ul>
+                    <li><a onclick="navigateTo('systems')">Como Funciona o Jogo</a></li>
+                    <li><a onclick="navigateTo('items')">Itens Essenciais</a></li>
+                    <li><a onclick="navigateTo('clans')">Clãs (Tier List Completa)</a></li>
+                    <li><a onclick="navigateTo('breathing')">Respirações</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Comunidade & Utilidades</h5>
+                <ul>
+                    <li><a onclick="navigateTo('bosses')">Bosses & Drops</a></li>
+                    <li><a onclick="navigateTo('codes')">Códigos Ativos</a></li>
+                    <li><a onclick="navigateTo('locations')">Mapa Ouwland</a></li>
+                    <li><a onclick="navigateTo('favorites')">Meus Favoritos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Slayers 2 Wiki. Baseado no Roblox Project Slayers / Slayers 2. Não oficial.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- BASE DE DADOS COMPLETA SLAYERS 2 ---
+        const db = {
+            systems: [
+                { id: 'sys-combat', name: 'Sistema de Combate (M1, Parries & Guarda)', category: 'Mecânica', desc: 'O combate baseia-se em sequências de ataques físicos (M1), quebra de guarda (Block Break), desvios rápidos e parries executados no tempo exato para interromper o oponente.' },
+                { id: 'sys-rep', name: 'Sistema de Reputação & Alinhamento', category: 'Facção', desc: 'Suas ações definem se você é Slayer ou Demônio. Matar inocentes ou consumir sangue diminui sua reputação abaixo de -40 e transforma você em um Demônio com Blood Demon Arts.' },
+                { id: 'sys-stamina', name: 'Barra de Estamina e Foco', category: 'Recursos', desc: 'Correr, usar habilidades e rolar consome estamina. Gerenciar essa barra e o foco da respiração é crucial para não ficar vulnerável no meio de combos.' },
+                { id: 'sys-level', name: 'Progressão de Nível e Missões', category: 'Evolução', desc: 'O ganho de EXP ocorre completando quests de NPCs por faixa de nível (1 a 145+) e posteriormente com missões empilhadas de corvos e farm de chefes mundiais.' }
+            ],
+            items: [
+                { id: 'it-nichirin', name: 'Espada Nichirin', type: 'Arma Inicial / Essencial', use: 'Arma fundamental para Slayers causarem dano real em demônios e chefes de alto nível.' },
+                { id: 'it-gourd', name: 'Breathing Gourd (Garrafa de Treino)', type: 'Treino', use: 'Usada para treinar a capacidade pulmonar e avançar nas maestrias dos estilos de respiração.' },
+                { id: 'it-ores', name: 'Minérios (Iron, Gold, Copper)', type: 'Material de Forja', use: 'Necessários para interagir com o ferreiro Togane, iniciar a quest The Forge e fabricar armas avançadas.' },
+                { 
+                    id: 'it-lantern', 
+                    name: 'Emberheart Lantern (Lanterna de Coração de Brasa)', 
+                    type: 'Utilitário / Imunidade ao Frio', 
+                    use: 'Concede imunidade ao congelamento contínuo em Iceveil Valley. Como funciona: deve ser equipada no slot de status; aproxime-se de fogueiras para carregar o temporizador (até 10 minutos); recarregue antes de zerar. Como obter: 25% de chance de drop do Yeti Demon na White Terror Lair (requer Frozen Heart).' 
+                },
+                { id: 'it-orb', name: 'Demon Blood Orb / Spins', type: 'Especial', use: 'Utilizados para resetar clãs, redefinir respirações ou adquirir Blood Demon Arts de alta raridade.' }
+            ],
+            clans: [
+                { id: 'kamado', name: 'Kamado', rarity: 'Tier S', tier: 'S', bonus: '+15 HP, +10% Regen, Imunidade parcial ao sol', obtaining: 'Spins', verified: true },
+                { id: 'rengoku', name: 'Rengoku', rarity: 'Tier S', tier: 'S', bonus: '+20% Dano de Fogo, Resistência a chamas', obtaining: 'Spins', verified: true },
+                { id: 'uzui', name: 'Uzui', rarity: 'Tier S', tier: 'S', bonus: 'Aumento de velocidade, estamina e musical score', obtaining: 'Spins', verified: true },
+                { id: 'soyama', name: 'Soyama', rarity: 'Tier S', tier: 'S', bonus: 'Bônus de combate otimizado e resistência', obtaining: 'Spins', verified: true },
+                { id: 'shinazugawa', name: 'Shinazugawa', rarity: 'Tier S', tier: 'S', bonus: '+30% Dano de Vento, Redução de recarga', obtaining: 'Spins', verified: true },
+                { id: 'himejima', name: 'Himejima', rarity: 'Tier S', tier: 'S', bonus: 'Resistência a dano físico e hiper-armadura', obtaining: 'Spins', verified: true },
+                { id: 'agatsuma', name: 'Agatsuma', rarity: 'Tier A', tier: 'A', bonus: '+10% Velocidade de Raio, Buff de Thunder', obtaining: 'Spins', verified: true },
+                { id: 'douma', name: 'Douma', rarity: 'Tier A', tier: 'A', bonus: 'Resistência ao frio e bônus de BDA de gelo', obtaining: 'Spins', verified: true },
+                { id: 'shabana', name: 'Shabana', rarity: 'Tier A', tier: 'A', bonus: 'Agilidade e dano de veneno/corte', obtaining: 'Spins', verified: true },
+                { id: 'tomioka', name: 'Tomioka', rarity: 'Tier A', tier: 'A', bonus: 'Tidal Blood e bônus de Água', obtaining: 'Spins', verified: true },
+                { id: 'urokodaki', name: 'Urokodaki', rarity: 'Tier A', tier: 'A', bonus: 'Maestria equilibrada em Water', obtaining: 'Spins', verified: true },
+                { id: 'iguro', name: 'Iguro', rarity: 'Tier A', tier: 'A', bonus: 'Precisão e dano de Serpent', obtaining: 'Spins', verified: true },
+                { id: 'tamayo', name: 'Tamayo', rarity: 'Tier A', tier: 'A', bonus: 'Regeneração e bônus medicinal', obtaining: 'Spins', verified: true },
+                { id: 'kocho', name: 'Kocho', rarity: 'Tier A', tier: 'A', bonus: 'Ataques aplicam veneno letal', obtaining: 'Spins', verified: true },
+                { id: 'sabito', name: 'Sabito', rarity: 'Tier A', tier: 'A', bonus: 'Aumento de estamina e força', obtaining: 'Spins', verified: true },
+                { id: 'ubuyashiki', name: 'Ubuyashiki', rarity: 'Tier B', tier: 'B', bonus: 'Liderança e bônus de ganho de Yen', obtaining: 'Spins', verified: true },
+                { id: 'makomo', name: 'Makomo', rarity: 'Tier B', tier: 'B', bonus: 'Agilidade aprimorada', obtaining: 'Spins', verified: true },
+                { id: 'yahaba', name: 'Yahaba', rarity: 'Tier B', tier: 'B', bonus: 'Sinergia com Arrow BDA', obtaining: 'Spins', verified: true },
+                { id: 'susamaru', name: 'Susamaru', rarity: 'Tier B', tier: 'B', bonus: 'Força de arremesso aprimorada', obtaining: 'Spins', verified: true },
+                { id: 'kaneki', name: 'Kaneki', rarity: 'Tier B', tier: 'B', bonus: 'Resistência física equilibrada', obtaining: 'Spins', verified: true },
+                { id: 'yamagiri', name: 'Yamagiri', rarity: 'Tier B', tier: 'B', bonus: 'Bônus de corte leve', obtaining: 'Spins', verified: true },
+                { id: 'kurotsume', name: 'Kurotsume', rarity: 'Tier B', tier: 'B', bonus: 'Agilidade noturna', obtaining: 'Spins', verified: true },
+                { id: 'aoshima', name: 'Aoshima', rarity: 'Tier B', tier: 'B', bonus: 'Velocidade de movimento', obtaining: 'Spins', verified: true },
+                { id: 'aori', name: 'Aori', rarity: 'Tier B', tier: 'B', bonus: 'Resistência a oponentes', obtaining: 'Spins', verified: true },
+                { id: 'yukimori', name: 'Yukimori', rarity: 'Tier C', tier: 'C', bonus: 'Bônus menor de resistência', obtaining: 'Spins', verified: true },
+                { id: 'kanzaki', name: 'Kanzaki', rarity: 'Tier C', tier: 'C', bonus: 'Suporte básico', obtaining: 'Spins', verified: true },
+                { id: 'mori', name: 'Mori', rarity: 'Tier C', tier: 'C', bonus: 'Estamina padrão', obtaining: 'Spins', verified: true },
+                { id: 'kurosaki', name: 'Kurosaki', rarity: 'Tier C', tier: 'C', bonus: 'Dano de espada leve', obtaining: 'Spins', verified: true },
+                { id: 'hozumi', name: 'Hozumi', rarity: 'Tier C', tier: 'C', bonus: 'Recuperação básica', obtaining: 'Spins', verified: true },
+                { id: 'aokawa', name: 'Aokawa', rarity: 'Tier C', tier: 'C', bonus: 'Velocidade padrão', obtaining: 'Spins', verified: true },
+                { id: 'saito', name: 'Saito', rarity: 'Tier C', tier: 'C', bonus: 'Estatísticas neutras', obtaining: 'Spins', verified: true },
+                { id: 'tsukino', name: 'Tsukino', rarity: 'Tier C', tier: 'C', bonus: 'Visão noturna leve', obtaining: 'Spins', verified: true },
+                { id: 'ando', name: 'Ando', rarity: 'Tier C', tier: 'C', bonus: 'Resistência física básica', obtaining: 'Spins', verified: true },
+                { id: 'suzuki', name: 'Suzuki', rarity: 'Tier C', tier: 'C', bonus: 'HP inicial leve', obtaining: 'Spins', verified: true },
+                { id: 'kuroaki', name: 'Kuroaki', rarity: 'Tier C', tier: 'C', bonus: 'Velocidade de ataque menor', obtaining: 'Spins', verified: true },
+                { id: 'fujiwara', name: 'Fujiwara', rarity: 'Tier C', tier: 'C', bonus: 'Estabilidade básica', obtaining: 'Spins', verified: true },
+                { id: 'sakurai', name: 'Sakurai', rarity: 'Tier C', tier: 'C', bonus: 'Defesa menor', obtaining: 'Spins', verified: true },
+                { id: 'hagiwara', name: 'Hagiwara', rarity: 'Tier C', tier: 'C', bonus: 'Foco inicial', obtaining: 'Spins', verified: true },
+                { id: 'kazetani', name: 'Kazetani', rarity: 'Tier C', tier: 'C', bonus: 'Mobilidade leve', obtaining: 'Spins', verified: true },
+                { id: 'fukukoshi', name: 'Fukukoshi', rarity: 'Tier C', tier: 'C', bonus: 'Ganho menor de recursos', obtaining: 'Spins', verified: true },
+                { id: 'toka', name: 'Toka', rarity: 'Tier C', tier: 'C', bonus: 'Bônus padrão', obtaining: 'Spins', verified: true }
+            ],
+            breathing: [
+                { id: 'thunder', name: 'Thunder Breathing (Kaminari no Kokyu)', type: 'Respiração', master: 'Kuwajima', requirement: 'Nível 25 + Dinheiro', tier: 'S', desc: 'Extrema mobilidade, velocidade relâmpago e avanço rápido em combos.', verified: true },
+                { id: 'sound', name: 'Sound Breathing (Oto no Kokyu)', type: 'Respiração', master: 'Tengen Uzui', requirement: 'Nível 25 + Requisitos', tier: 'S', desc: 'Combos sônicos, explosões de curto alcance e desvios rápidos com muscle draw.', verified: true },
+                { id: 'serpent', name: 'Serpent Breathing (Hebi no Kokyu)', type: 'Respiração', master: 'Iguro Trainer', requirement: 'Nível 25 + Requisitos', tier: 'A', desc: 'Ataques sinuosos imprevisibles e excelente controle posicional.', verified: true },
+                { id: 'insect', name: 'Insect Breathing (Mushi no Kokyu)', type: 'Respiração', master: 'Shinobu Trainer', requirement: 'Nível 25 + Kocho Clan rec.', tier: 'A', desc: 'O melhor estilo para caçar bosses devido ao acúmulo veloz de veneno letal.', verified: true },
+                { id: 'flame', name: 'Flame Breathing (En no Kokyu)', type: 'Respiração', master: 'Rengoku NPC', requirement: 'Nível 25 + Requisitos', tier: 'A', desc: 'Dano explosivo excelente para PvE e PvP, fácil de dominar e escalar.', verified: true },
+                { id: 'stone', name: 'Stone Breathing (Iwa no Kokyu)', type: 'Respiração', master: 'Himejima', requirement: 'Nível 25 + Treino', tier: 'A', desc: 'Foco em defesa absoluta, hiper-armadura e dano esmagador em combates fechados.', verified: true },
+                { id: 'wind', name: 'Wind Breathing (Kaze no Kokyu)', type: 'Respiração', master: 'Trainer Ouwland', requirement: 'Nível 25 + Recursos', tier: 'B', desc: 'Cortes rápidos com hiper-armadura e pressão de guardas.', verified: true },
+                { id: 'water', name: 'Water Breathing (Mizu no Kokyu)', type: 'Respiração', master: 'Urokodaki', requirement: 'Nível 15+', tier: 'C', desc: 'Stuns no X e Water Wheel, excelente para dungeons e chefes.', verified: true }
+            ],
+            bda: [
+                { id: 'pyrokinesis', name: 'Pyrokinesis / Explosive Blood', rarity: 'Legendary', tier: 'S', obtaining: 'Muzan / Orb', desc: 'Cria chamas demoníacas e explosões de sangue de alto impacto em área.', verified: true },
+                { id: 'shockwave', name: 'Shockwave', rarity: 'Legendary', tier: 'S', obtaining: 'Muzan / Orb', desc: 'Ondas de choque reativas poderosas para quebrar hiper-armadura e contra-atacar.', verified: true },
+                { id: 'obi', name: 'Obi Manipulation', rarity: 'Legendary', tier: 'S', obtaining: 'Muzan / Orb', desc: 'Especialista em pressão de guarda e controle de faixa à distância.', verified: true },
+                { id: 'dream', name: 'Dream Manipulation', rarity: 'Epic', tier: 'A', obtaining: 'Muzan / Orb', desc: 'Focado em stuns longos e grabs para criar combos mortais no PvP.', verified: true },
+                { id: 'ice', name: 'Ice Manipulation (Cryokinesis)', rarity: 'Legendary', tier: 'A', obtaining: 'Muzan / Orb', desc: 'Congelamento em área massiva, excelente para dungeons e controle de multidão.', verified: true },
+                { id: 'reaper', name: 'Reaper', rarity: 'Epic', tier: 'A', obtaining: 'Muzan / Orb', desc: 'Estilo de combate demoníaco com foices espectrais e cortes fatais.', verified: true },
+                { id: 'tamari', name: 'Tamari', rarity: 'Rare', tier: 'A', obtaining: 'Muzan / Orb', desc: 'Arremesso de bolas pesadas com buff massivo de dano contra NPCs.', verified: true },
+                { id: 'arrow', name: 'Arrow Manipulation', rarity: 'Epic', tier: 'A', obtaining: 'Muzan / Orb', desc: 'Manipulação de vetores de força, rastreamento e zoneamento defensivo no PvP.', verified: true },
+                { id: 'blood', name: 'Blood Manipulation', rarity: 'Legendary', tier: 'A', obtaining: 'Muzan / Orb', desc: 'O melhor BDA para PvE com ataques em barra e DPS contínuo.', verified: true }
+            ],
+            weapons: [
+                { id: 'claws', name: 'Claws', tier: 'S', strength: 'Bônus massivo de 35% de dano no movimento Z', verdict: 'Melhor para dano puro e punições.', verified: true },
+                { id: 'scythe', name: 'Scythe', tier: 'S', strength: 'Hitbox grande e stun rigoroso no movimento X', verdict: 'Excelente para extensões de combo e controle de grupo.', verified: true },
+                { id: 'nightfall-gauntlets', name: 'Nightfall Gauntlets', tier: 'A', strength: 'Utilidade defensiva e inicialização rápida', verdict: 'Uma escolha versátil para builds equilibradas de Slayer.', verified: true },
+                { id: 'spear', name: 'Spear', tier: 'A', strength: 'Longo alcance e potencial de interrupção', verdict: 'Ótima para manter distância contra demônios agressivos.', verified: true },
+                { id: 'bladed-wagasa', name: 'Bladed Wagasa', tier: 'A', strength: 'Padrões de ataque difíceis de interromper', verdict: 'Confiável em cenários de PvP de alta pressão.', verified: true },
+                { id: 'nightfall-sickles', name: 'Nightfall Sickles', tier: 'B', strength: 'DPS alto, mas exige um grind massivo', verdict: 'Potencialmente Tier S, mas o custo de fabricação é proibitivo.', verified: true },
+                { id: 'axe-and-mace', name: 'Axe and Mace', tier: 'B', strength: 'Alto dano de M1 (+10%)', verdict: 'Poderosa, mas a velocidade de ataque 15% menor é uma desvantagem.', verified: true },
+                { id: 'cutlass', name: 'Cutlass', tier: 'C', strength: 'Dano base baixo e cooldowns longos', verdict: 'Atualmente superada por quase todas as outras opções.', verified: true }
+            ],
+            bosses: [
+                { id: 'obanai', name: 'Obanai', location: 'Acima de Bamboo Grove', difficulty: 'Média', drops: 'Serpent Haori, Serpent Katana, Serpent Mask', verified: true },
+                { id: 'zentaro', name: 'Zentaro', location: 'Abaixo de Obanai, perto de Hidden Mist', difficulty: 'Média', drops: 'Thunder Haori, Thunder Katana', verified: true },
+                { id: 'sanemi', name: 'Sanemi', location: 'Caminho principal ou sul de Windy Peak', difficulty: 'Difícil', drops: 'Conjunto Wind-themed, Wind Katana', verified: true },
+                { id: 'shinobu', name: 'Shinobu (Shinora)', location: 'Hidden Mist Village', difficulty: 'Difícil', drops: 'Insect Katana, Recompensas de respiração', verified: true },
+                { id: 'rengoku', name: 'Rengoku (Rengu)', location: 'Rengoku’s Home', difficulty: 'Extrema', drops: 'Flame Katana, Purgatory', verified: true },
+                { id: 'nezuko', name: 'Nezuko (Nezura)', location: 'Abaixo do penhasco de Rengoku', difficulty: 'Média', drops: 'Bamboo Muzzle, Nezura’s Outfit', verified: true },
+                { id: 'giyu', name: 'Giyu (Giyen)', location: 'Bamboo Grove', difficulty: 'Difícil', drops: 'Water Katana, Materiais', verified: true },
+                { id: 'reaper', name: 'Reaper', location: 'Passado Giyu', difficulty: 'Extrema', drops: 'Reaper’s Outfit, Movimento definitivo', verified: true },
+                { id: 'daki', name: 'Daki (Datai)', location: 'Caverna perto do portão vermelho', difficulty: 'Difícil', drops: 'Golden Kanzashi, Bulwark set', verified: true },
+                { id: 'gyutaro', name: 'Gyutaro (Gyutai)', location: 'Caverna de Daki (mais fundo)', difficulty: 'Extrema', drops: 'Blood Sickles', verified: true },
+                { id: 'sabito-water', name: 'Water Trainee Sabito', location: 'Caminho central', difficulty: 'Média', drops: 'Water Trainee Outfit, Máscaras', verified: true },
+                { id: 'gyomei', name: 'Gyomei (Gyorei)', location: 'Hidden Mist Village / Stone Sanctuary', difficulty: 'Extrema', drops: 'Itens de Stone', verified: true },
+                { id: 'fujiko', name: 'Fujiko', location: 'Caverna secreta em Final Selection Plains', difficulty: 'Difícil', drops: 'Bladed Wagasa, Fujiko’s Outfit', verified: true },
+                { id: 'sumari-yahari', name: 'Sumari e Yahari', location: 'Além de Bamboo Grove (Apenas à noite)', difficulty: 'Extrema', drops: 'Conjuntos, colares, movimentos definitivos', verified: true },
+                { id: 'akaza', name: 'Akaza (Akeza)', location: 'Windy Peak (Atrás de parede falsa)', difficulty: 'Extrema', drops: 'Shockwave, Peças de roupa', verified: true },
+                { id: 'enmu', name: 'Enmu (Enru)', location: 'Dreamfall Hollow', difficulty: 'Difícil', drops: 'Drops de Sonho', verified: true },
+                { id: 'tengen', name: 'Tengen (Tengai)', location: 'Vila nevada perto de Frost Veil Shrine', difficulty: 'Extrema', drops: 'Armas de som', verified: true },
+                { id: 'doma', name: 'Doma (Domae)', location: 'Portão torii além de Tengen', difficulty: 'Extrema', drops: 'Black Lotus Crown, War Fans', verified: true },
+                { id: 'yeti', name: 'Yeti', location: 'Iceveil Valley (Requer Emberheart Lantern)', difficulty: 'Extrema', drops: 'Drops exclusivos de gelo', verified: true }
+            ],
+            quests: [
+                { id: 'q1', name: 'Krue (Windy Peak)', region: 'Windy Peak', level: '1–10', reward: 'Yen & EXP Inicial', desc: 'Quests iniciais de bandidos e combate contra o chefe Zuko.' },
+                { id: 'q2', name: 'Tom (Bamboo Grove)', region: 'Bamboo Grove', level: '10–26', reward: 'Materiais & EXP', desc: 'Caçada a ursos e ao mini-chefe Mother Bear.' },
+                { id: 'q3', name: 'Chaka (Windy Peak)', region: 'Windy Peak', level: '26–40', reward: 'EXP & Progressão', desc: 'Cadeia de missões Kaiden (subordinados e chefe local).' },
+                { id: 'q4', name: 'Wagwan (Bamboo/Waterfall)', region: 'Bamboo Grove / Waterfall', level: '40–62', reward: 'EXP Avançada', desc: 'Missões contra guarda-costas e o chefe Hoyuzo.' },
+                { id: 'q5', name: 'Jugg (Dreamfall Hollow)', region: 'Dreamfall Hollow', level: '62–75', reward: 'EXP & Recursos', desc: 'Limpeza de cavernas e inimigos profundos.' },
+                { id: 'q6', name: 'Demon Slayer Goro', region: 'Mistfall Harbor', level: '75–90', reward: 'EXP de Demônios', desc: 'Quests especializadas na caça a demônios na região costeira.' },
+                { id: 'q7', name: 'Tomoi & Shiro', region: 'Iceveil Valley', level: '90–105', reward: 'EXP de Gelo', desc: 'Quests de níveis 90 e 100 na vila nevada.' },
+                { id: 'q8', name: 'Demon Slayer Mitsu', region: 'Iceveil Valley', level: '105–145', reward: 'EXP Superior', desc: 'Missões de combate contra demônios de gelo e fogo.' },
+                { id: 'q9', name: 'Fase Final (Kasugai Crow & Bosses)', region: 'Mundo Aberto (Ouwland)', level: '145–255', reward: 'Drops de Boss & High EXP', desc: 'Missões de corvos empilhadas, farm de chefes mundiais (Akaza) e Hashiras.' },
+                { id: 'q10', name: 'Final Selection Trial', region: 'Caverna Inicial', level: '45–60', reward: 'Rank Mizunoto, Uniforme, Kasugai Crow', desc: 'Marco obrigatório: tarefas, parkour e combate contra o Hand Demon.' },
+                { id: 'q11', name: 'The Forge (Blacksmith Togane)', region: 'Hidden Mist Village', level: '65+', reward: 'Acesso ao portal Ouwigahara e Armas Avançadas', desc: 'Inicia a quest de forja e refinamento de armas de nível superior.' }
+            ],
+            locations: [
+                { id: 'l1', name: 'Hidden Mist Village', region: 'Ouwland Central', npcs: 'Blacksmith Togane, Nori, Tobei', bosses: 'Shinobu, Gyomei, Zentaro', verified: true },
+                { id: 'l2', name: 'Iceveil Valley', region: 'Região Gelada', npcs: 'Mitsu, Shiro, Treinador Zurinyz', bosses: 'Yeti', verified: true },
+                { id: 'l3', name: 'Mistfall Harbor', region: 'Porto Costeiro', npcs: 'Elara, Ginzo', bosses: 'Enmu', verified: true }
+            ],
+            races: [
+                { id: 'human', name: 'Humano / Slayer', obtaining: 'Raça inicial', perks: 'Pode aprender Respirações (Breathing Styles) e forjar armas avançadas de Slayer.', verified: true },
+                { id: 'demon', name: 'Demônio', obtaining: 'Muzan / Beber sangue (-40 rep)', perks: 'Usa Blood Demon Arts, regeneração passiva de HP e armas exclusivas como War Fans e Claws.', verified: true }
+            ],
+            codes: [
+                { code: 'SLAYERS2_RELEASE', reward: 'Spins Grátis & Reset', status: 'Ativo', verifiedDate: '2026' },
+                { code: 'OUWLAND_UPDATE', reward: 'Yen & Ores', status: 'Ativo', verifiedDate: '2026' },
+                { code: 'FORGE_FIXES', reward: 'Spins de Clã', status: 'Ativo', verifiedDate: '2026' }
+            ]
+        };
+
+        let currentView = 'home';
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('sidebar-overlay').classList.toggle('active');
+        }
+
+        function navigateTo(view) {
+            currentView = view;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            render();
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function render() {
+            const container = document.getElementById('app-container');
+            switch(currentView) {
+                case 'home': container.innerHTML = renderHome(); break;
+                case 'systems': container.innerHTML = renderSystems(); break;
+                case 'items': container.innerHTML = renderItems(); break;
+                case 'clans': container.innerHTML = renderClans(); break;
+                case 'breathing': container.innerHTML = renderBreathing(); break;
+                case 'bda': container.innerHTML = renderBDA(); break;
+                case 'weapons': container.innerHTML = renderWeapons(); break;
+                case 'bosses': container.innerHTML = renderBosses(); break;
+                case 'quests': container.innerHTML = renderQuests(); break;
+                case 'locations': container.innerHTML = renderLocations(); break;
+                case 'races': container.innerHTML = renderRaces(); break;
+                case 'codes': container.innerHTML = renderCodes(); break;
+                case 'favorites': container.innerHTML = renderFavorites(); break;
+                default: container.innerHTML = renderHome();
+            }
+        }
+
+        function renderHome() {
+            return `
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Slayers 2 Wiki (Ouwland)</h1>
+                        <p>O guia oficial e enciclopédia definitiva para Project Slayers 2 no Roblox. Explore os sistemas de jogo, itens essenciais, clãs, respirações, Blood Demon Arts, armas e bosses com localizações.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="navigateTo('systems')">Ver Como o Jogo Funciona</button>
+                            <button class="btn btn-secondary" onclick="navigateTo('items')">Ver Itens Essenciais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">⚡ Categorias do Slayers 2</h2>
+                <div class="quick-grid">
+                    <div class="card-quick" onclick="navigateTo('systems')"><span style="font-size: 2rem;">⚙️</span><h3>Sistema do Jogo</h3></div>
+                    <div class="card-quick" onclick="navigateTo('items')"><span style="font-size: 2rem;">🎒</span><h3>Itens Essenciais</h3></div>
+                    <div class="card-quick" onclick="navigateTo('clans')"><span style="font-size: 2rem;">👥</span><h3>Clãs (Tier List)</h3></div>
+                    <div class="card-quick" onclick="navigateTo('breathing')"><span style="font-size: 2rem;">🌊</span><h3>Respirações</h3></div>
+                    <div class="card-quick" onclick="navigateTo('bda')"><span style="font-size: 2rem;">🩸</span><h3>Blood Demon Arts</h3></div>
+                    <div class="card-quick" onclick="navigateTo('weapons')"><span style="font-size: 2rem;">⚔️</span><h3>Armas (Tier List)</h3></div>
+                    <div class="card-quick" onclick="navigateTo('bosses')"><span style="font-size: 2rem;">👹</span><h3>Bosses & Drops</h3></div>
+                    <div class="card-quick" onclick="navigateTo('quests')"><span style="font-size: 2rem;">📜</span><h3>Quests & Progressão</h3></div>
+                    <div class="card-quick" onclick="navigateTo('locations')"><span style="font-size: 2rem;">🗺️</span><h3>Mapa Ouwland</h3></div>
+                    <div class="card-quick" onclick="navigateTo('races')"><span style="font-size: 2rem;">👤</span><h3>Raças</h3></div>
+                    <div class="card-quick" onclick="navigateTo('codes')"><span style="font-size: 2rem;">🎁</span><h3>Códigos</h3></div>
+                </div>
+            `;
+        }
+
+        function renderSystems() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Sistema do Jogo</span></div>
+                        <h2 class="section-title">⚙ Como o Jogo Funciona & Mecânicas</h2>
+                        <div class="data-grid">`;
+            db.systems.forEach(s => {
+                html += `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <h3>${s.name}</h3>
+                            <span class="badge badge-a">${s.category}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p>${s.desc}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('Sistema', '${s.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderItems() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Itens Essenciais</span></div>
+                        <h2 class="section-title">🎒 Itens Essenciais e Recursos do Jogo</h2>
+                        <div class="data-grid">`;
+            db.items.forEach(i => {
+                html += `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <h3>${i.name}</h3>
+                            <span class="badge badge-s">${i.type}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Utilidade:</strong> ${i.use}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('Item', '${i.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderClans() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Clãs</span></div>
+                        <h2 class="section-title">👥 Todos os Clãs (Tier S, A, B e C)</h2>
+                        <div class="filters-bar">
+                            <input type="text" class="filter-input" placeholder="Pesquisar por nome de clã..." oninput="filterCards('clan-card', this.value)">
+                        </div>
+                        <div class="data-grid">`;
+            db.clans.forEach(c => {
+                let badgeClass = 'badge-s';
+                if(c.tier === 'A') badgeClass = 'badge-a';
+                if(c.tier === 'B') badgeClass = 'badge-b';
+                if(c.tier === 'C') badgeClass = 'badge-c';
+
+                html += `
+                    <div class="data-card clan-card" data-name="${c.name.toLowerCase()}">
+                        <div class="data-card-header">
+                            <h3>${c.name}</h3>
+                            <span class="badge ${badgeClass}">Tier ${c.tier}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Bônus:</strong> ${c.bonus}</p>
+                            <p><strong>Obtenção:</strong> ${c.obtaining}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('Clã', '${c.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderBreathing() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Respirações</span></div>
+                        <h2 class="section-title">🌊 Estilos de Respiração (Tier List Atualizada)</h2>
+                        <div class="data-grid">`;
+            db.breathing.forEach(b => {
+                let badgeClass = 'badge-s';
+                if(b.tier === 'A') badgeClass = 'badge-a';
+                if(b.tier === 'B') badgeClass = 'badge-b';
+                if(b.tier === 'C') badgeClass = 'badge-c';
+
+                html += `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <h3>${b.name}</h3>
+                            <span class="badge ${badgeClass}">Tier ${b.tier}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Mestre / NPC:</strong> ${b.master}</p>
+                            <p><strong>Requisito:</strong> ${b.requirement}</p>
+                            <p>${b.desc}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('Respiração', '${b.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderBDA() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Blood Demon Arts</span></div>
+                        <h2 class="section-title">🩸 Blood Demon Arts (BDAs)</h2>
+                        <div class="data-grid">`;
+            db.bda.forEach(d => {
+                html += `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <h3>${d.name}</h3>
+                            <span class="badge badge-s">${d.rarity}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Tier:</strong> ${d.tier}</p>
+                            <p><strong>Obtenção:</strong> ${d.obtaining}</p>
+                            <p>${d.desc}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('BDA', '${d.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderWeapons() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Armas</span></div>
+                        <h2 class="section-title">⚔ Tier List de Armas do Jogo</h2>
+                        <div class="filters-bar">
+                            <input type="text" class="filter-input" placeholder="Pesquisar por nome da arma..." oninput="filterCards('weapon-card', this.value)">
+                        </div>
+                        <div class="data-grid">`;
+            db.weapons.forEach(w => {
+                let badgeClass = 'badge-s';
+                if(w.tier === 'A') badgeClass = 'badge-a';
+                if(w.tier === 'B') badgeClass = 'badge-b';
+                if(w.tier === 'C') badgeClass = 'badge-c';
+
+                html += `
+                    <div class="data-card weapon-card" data-name="${w.name.toLowerCase()}">
+                        <div class="data-card-header">
+                            <h3>${w.name}</h3>
+                            <span class="badge ${badgeClass}">Tier ${w.tier}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Força Principal:</strong> ${w.strength}</p>
+                            <p><strong>Veredito:</strong> ${w.verdict}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('Arma', '${w.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderBosses() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Bosses</span></div>
+                        <h2 class="section-title">👹 Guia Completo de Bosses (Ouwland & Especiais)</h2>
+                        <div class="filters-bar">
+                            <input type="text" class="filter-input" placeholder="Pesquisar por nome do boss..." oninput="filterCards('boss-card', this.value)">
+                        </div>
+                        <div class="data-grid">`;
+            db.bosses.forEach(b => {
+                html += `
+                    <div class="data-card boss-card" data-name="${b.name.toLowerCase()}">
+                        <div class="data-card-header">
+                            <h3>${b.name}</h3>
+                            <span class="badge badge-s">${b.difficulty}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Local:</strong> ${b.location}</p>
+                            <p><strong>Drops:</strong> ${b.drops}</p>
+                            <button class="btn btn-secondary" style="margin-top: auto;" onclick="toggleFavorite('Boss', '${b.name}')">⭐ Favoritar</button>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderQuests() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Quests</span></div>
+                        <h2 class="section-title">📜 Guia de Quests por Nível & Marcos</h2>
+                        <div class="filters-bar">
+                            <input type="text" class="filter-input" placeholder="Pesquisar quest ou NPC..." oninput="filterCards('quest-card', this.value)">
+                        </div>
+                        <div class="data-grid">`;
+            db.quests.forEach(q => {
+                html += `
+                    <div class="data-card quest-card" data-name="${q.name.toLowerCase()}">
+                        <div class="data-card-header">
+                            <h3>${q.name}</h3>
+                            <span class="badge badge-a">Níveis ${q.level}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Região/NPC:</strong> ${q.region}</p>
+                            <p><strong>Recompensa:</strong> ${q.reward}</p>
+                            <p>${q.desc}</p>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderLocations() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Ouwland</span></div>
+                        <h2 class="section-title">🗺️ Mapa de Ouwland</h2>
+                        <div class="data-grid">`;
+            db.locations.forEach(l => {
+                html += `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <h3>${l.name}</h3>
+                            <span class="badge badge-c">${l.region}</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>NPCs Chave:</strong> ${l.npcs}</p>
+                            <p><strong>Bosses:</strong> ${l.bosses}</p>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderRaces() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Raças</span></div>
+                        <h2 class="section-title">👤 Raças do Slayers 2</h2>
+                        <div class="data-grid">`;
+            db.races.forEach(r => {
+                html += `
+                    <div class="data-card">
+                        <div class="data-card-header">
+                            <h3>${r.name}</h3>
+                            <span class="badge badge-a">Raça</span>
+                        </div>
+                        <div class="data-card-body">
+                            <p><strong>Obtenção:</strong> ${r.obtaining}</p>
+                            <p><strong>Vantagens:</strong> ${r.perks}</p>
+                        </div>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderCodes() {
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Códigos</span></div>
+                        <h2 class="section-title">🎁 Códigos Promocionais</h2>
+                        <div class="codes-list">`;
+            db.codes.forEach(c => {
+                html += `
+                    <div class="code-card">
+                        <div class="code-info">
+                            <h4>${c.code}</h4>
+                            <p>Recompensa: ${c.reward}</p>
+                            <p style="font-size: 0.75rem; color: #10b981; margin-top: 4px;">Status: ${c.status}</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="copyCode('${c.code}')">Copiar</button>
+                    </div>`;
+            });
+            return html + `</div>`;
+        }
+
+        function renderFavorites() {
+            const favs = JSON.parse(localStorage.getItem('s2_favorites') || '[]');
+            let html = `<div class="breadcrumbs"><a onclick="navigateTo('home')">Início</a> / <span>Favoritos</span></div>
+                        <h2 class="section-title">⭐ Meus Favoritos</h2>
+                        <div class="data-grid">`;
+            if (favs.length === 0) {
+                html += `<p style="color: var(--text-secondary);">Nenhum item favoritado ainda. Navegue pelas seções e clique em "Favoritar".</p>`;
+            } else {
+                favs.forEach(f => {
+                    html += `
+                        <div class="data-card">
+                            <div class="data-card-body">
+                                <h3>${f.name}</h3>
+                                <p style="color: var(--text-secondary);">Categoria: ${f.type}</p>
+                            </div>
+                        </div>`;
+                });
+            }
+            return html + `</div>`;
+        }
+
+        function toggleFavorite(type, name) {
+            let favs = JSON.parse(localStorage.getItem('s2_favorites') || '[]');
+            const index = favs.findIndex(item => item.name === name);
+            if (index > -1) {
+                favs.splice(index, 1);
+                showToast('Removido dos favoritos!');
+            } else {
+                favs.push({ type, name });
+                showToast('Adicionado aos favoritos!');
+            }
+            localStorage.setItem('s2_favorites', JSON.stringify(favs));
+        }
+
+        function copyCode(code) {
+            navigator.clipboard.writeText(code);
+            showToast(`Código "${code}" copiado com sucesso!`);
+        }
+
+        function openSearchModal() {
+            document.getElementById('search-modal').classList.add('active');
+            document.getElementById('global-search-input').focus();
+        }
+
+        function closeSearchModalOnOutside(e) {
+            if (e.target.id === 'search-modal') {
+                document.getElementById('search-modal').classList.remove('active');
+            }
+        }
+
+        function handleGlobalSearch(query) {
+            const resultsContainer = document.getElementById('modal-search-results');
+            if (!query.trim()) {
+                resultsContainer.innerHTML = `<div style="padding: 1rem; color: var(--text-secondary); text-align: center;">Comece a digitar para pesquisar...</div>`;
+                return;
+            }
+
+            const q = query.toLowerCase();
+            let matches = [];
+
+            db.systems.forEach(s => { if(s.name.toLowerCase().includes(q)) matches.push({ name: s.name, type: 'Sistema', view: 'systems' }); });
+            db.items.forEach(i => { if(i.name.toLowerCase().includes(q)) matches.push({ name: i.name, type: 'Item', view: 'items' }); });
+            db.clans.forEach(c => { if(c.name.toLowerCase().includes(q)) matches.push({ name: `${c.name} (Tier ${c.tier})`, type: 'Clã', view: 'clans' }); });
+            db.breathing.forEach(b => { if(b.name.toLowerCase().includes(q)) matches.push({ name: `${b.name} (Tier ${b.tier})`, type: 'Respiração', view: 'breathing' }); });
+            db.bda.forEach(d => { if(d.name.toLowerCase().includes(q)) matches.push({ name: d.name, type: 'BDA', view: 'bda' }); });
+            db.weapons.forEach(w => { if(w.name.toLowerCase().includes(q)) matches.push({ name: `${w.name} (Tier ${w.tier})`, type: 'Arma', view: 'weapons' }); });
+            db.bosses.forEach(b => { if(b.name.toLowerCase().includes(q)) matches.push({ name: b.name, type: 'Boss', view: 'bosses' }); });
+            db.quests.forEach(qu => { if(qu.name.toLowerCase().includes(q)) matches.push({ name: qu.name, type: 'Quest', view: 'quests' }); });
+
+            if (matches.length === 0) {
+                resultsContainer.innerHTML = `<div style="padding: 1rem; color: var(--text-secondary); text-align: center;">Nenhum resultado encontrado para "${query}".</div>`;
+                return;
+            }
+
+            let html = '';
+            matches.forEach(m => {
+                html += `
+                    <div class="search-result-item" onclick="document.getElementById('search-modal').classList.remove('active'); navigateTo('${m.view}')">
+                        <span>${m.name}</span>
+                        <span class="badge">${m.type}</span>
+                    </div>`;
+            });
+            resultsContainer.innerHTML = html;
+        }
+
+        function filterCards(className, query) {
+            const cards = document.querySelectorAll('.' + className);
+            const q = query.toLowerCase();
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(q)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        render();
+    </script>
+</body>
+</html>
